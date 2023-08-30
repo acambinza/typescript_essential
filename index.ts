@@ -68,13 +68,26 @@ const conn3 = {name: 'sqllite', url: 'sqllite://root:root@127.0.0.1:3306/peolple
 
 
 
-// generic
+// generic T
+function pickPropertyGeneric<T>(obj: T, property: keyof T) {
+    return obj[property]
+}
 
 type Video = {
     title: string
     duration: number
 }
 
+const video: Video = {
+    title: 'TypeScript',
+    duration: 1500
+}
 
 
+// garantindo a tipagem do objecto <string, anyValue>
+function pickPropertyGeneric2<T extends Record<string, undefined>>(obj: T, property: keyof T) {
+    return obj[property]
+}
 
+
+console.log(pickPropertyGeneric({title: 'AnyValue'}, 'title'))
